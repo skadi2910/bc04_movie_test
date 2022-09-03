@@ -8,7 +8,7 @@ export default class HomePage extends Component {
   };
   componentDidMount() {
     axios({
-      url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09",
+      url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP03",
       method: "GET",
       headers: {
         TokenCybersoft:
@@ -58,6 +58,7 @@ export default class HomePage extends Component {
               Go somewhere
             </a>
           </div>
+          home page
         </div>
       );
     });
