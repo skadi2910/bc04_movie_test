@@ -13,9 +13,17 @@ export default class Header extends Component {
           {" "}
           Detail page
         </NavLink>
-        <NavLink className={"btn btn-primary"} to="/login">
+        <NavLink className={"btn btn-primary mx-5"} to="/login">
           {" "}
           Login page
+        </NavLink>
+
+        <NavLink className={"btn btn-primary"} to="/demo-hook">
+          {" "}
+          Demo Hook
+        </NavLink>
+        <NavLink className={"btn btn-primary"} to="/ex-colors">
+          Ex Colors
         </NavLink>
       </div>
     );

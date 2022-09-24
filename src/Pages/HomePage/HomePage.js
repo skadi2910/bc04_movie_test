@@ -1,18 +1,23 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Header from "../../Components/Header/Header";
+import { hideLongString, TOKEN_CYBERSOFT } from "../../utils/utils";
 
 export default class HomePage extends Component {
   state = {
     movieList: [],
   };
   componentDidMount() {
+    let userJson = localStorage.getItem("USER");
+    if (!JSON.parse(userJson)) {
+      window.location.href = "/login";
+    }
     axios({
       url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP03",
       method: "GET",
       headers: {
-        TokenCybersoft:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCDEkMOgIE7hurVuZyAwMyIsIkhldEhhblN0cmluZyI6IjIwLzAxLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY3NDE3MjgwMDAwMCIsIm5iZiI6MTY0NTgwODQwMCwiZXhwIjoxNjc0MzIwNDAwfQ.8_aCoaa6rU0qnQpITJH8MZSFEBfvbj11eFJWuFsTYL8",
+        TokenCybersoft: TOKEN_CYBERSOFT,
       },
     })
       .then((res) => {
@@ -50,15 +55,11 @@ export default class HomePage extends Component {
           />
           <div className="card-body">
             <h5 className="card-title">{movie.tenPhim}</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="btn btn-primary">
-              Go somewhere
-            </a>
+            <p className="card-text">{hideLongString(movie.moTa, 80)}</p>
+            <NavLink to={`/detail/${movie.maPhim}`} className="btn btn-primary">
+              Xem Chi Tiết
+            </NavLink>
           </div>
-          home page
         </div>
       );
     });
